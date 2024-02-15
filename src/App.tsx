@@ -1,16 +1,17 @@
 import StarIcon from './assets/star.svg?react'
 import LogoIcon from './assets/stair.svg?react'
+import './styles.css'
 
 function App() {
   return (
     <>
       <header>
-        <div>
-          <LogoIcon width={16} height={16} />
+        <div className="logo">
+          <LogoIcon width={16} height={16} className="logo__icon" />
           <span>Eats</span>
         </div>
-        <div>
-          <img alt="profile" src="/avatar.png" width="24" />
+        <div className="profile">
+          <img alt="profile" src="/avatar.png" />
         </div>
       </header>
       <main>
@@ -19,7 +20,7 @@ function App() {
       </main>
       <footer>
         <p>Privacy Policy</p>
-        <p>2022 Eats</p>
+        <p className="corporation">2022 Eats</p>
         <p>Terms Of Service</p>
       </footer>
     </>
