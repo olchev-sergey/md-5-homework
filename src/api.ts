@@ -1,5 +1,3 @@
-import { useMutation, useQuery } from '@tanstack/react-query'
-
 const API_URL = 'http://localhost:3000'
 
 export interface Restaurant {
@@ -10,22 +8,15 @@ export interface Restaurant {
   url: string
 }
 
-const getRestaurants = (): Promise<Restaurant[]> =>
+export const getRestaurants = (): Promise<Restaurant[]> =>
   fetch(`${API_URL}/restaurants`).then((res) => res.json())
-
-export const useGetRestaurants = () => {
-  return useQuery({
-    queryKey: ['restaurants'],
-    queryFn: getRestaurants,
-  })
-}
 
 interface UpdateRestaurantRaitingArgs {
   id: Restaurant['id']
   raiting: Restaurant['raiting']
 }
 
-const updateRestaurantRating = ({
+export const updateRestaurantRating = ({
   id,
   raiting,
 }: UpdateRestaurantRaitingArgs): Promise<Restaurant> =>
@@ -33,9 +24,3 @@ const updateRestaurantRating = ({
     method: 'PATCH',
     body: JSON.stringify({ raiting }),
   }).then((res) => res.json())
-
-export const useChangeRestaurantRaiting = () => {
-  return useMutation({
-    mutationFn: updateRestaurantRating,
-  })
-}
